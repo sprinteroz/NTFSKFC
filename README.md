@@ -10,7 +10,7 @@ This repository combines:
 - **NTFSPLUS Kernel Module**: Enterprise-grade NTFS filesystem for Linux kernel
 - **ntfsprogs-plus**: Enhanced NTFS utilities with filesystem checking capabilities
 
-## =€ Key Features
+##  Key Features
 
 ### NTFSPLUS Kernel Module
 - **20-50% better performance** than Windows NTFS
@@ -27,7 +27,7 @@ This repository combines:
 - **ntfsinfo**: Detailed inode and filesystem information
 - **Memory bug fixes** and enhanced reliability
 
-## =æ Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 
@@ -107,7 +107,7 @@ make clean && make
 sudo make install
 ```
 
-## =€ Usage
+##Â€ Usage
 
 ### NTFSPLUS Kernel Module
 
@@ -198,7 +198,7 @@ sudo ntfsinfo -i 12345 /dev/sdXn
 sudo ntfsinfo /dev/sdXn
 ```
 
-## =' Configuration
+## Configuration
 
 ### Kernel Configuration (NTFSPLUS)
 
@@ -225,7 +225,7 @@ CONFIG_NTFSPLUS_FS_DEBUG=n        # Enable debug features
 ntfsplus
 ```
 
-## >ê Testing
+## Testing
 
 ### NTFSPLUS Kernel Module Tests
 ```bash
@@ -255,7 +255,7 @@ sudo ntfsck -n /dev/sdXn
 sudo ntfsinfo /dev/sdXn | head -20
 ```
 
-## =È Performance Tuning
+## Performance Tuning
 
 ### NTFSPLUS Cache Optimization
 ```bash
@@ -284,7 +284,7 @@ echo 10 > /proc/sys/vm/swappiness
 echo 1 > /proc/sys/vm/compact_memory
 ```
 
-## = Updates & Maintenance
+## Updates & Maintenance
 
 ### Update NTFSPLUS Kernel Module
 ```bash
@@ -333,7 +333,7 @@ sudo rmmod ntfsplus
 sudo modprobe ntfsplus
 ```
 
-## = Troubleshooting
+## Troubleshooting
 
 ### NTFSPLUS Module Issues
 
@@ -420,7 +420,7 @@ sudo modprobe ntfsplus cache_size=128
 free -h
 ```
 
-## =Ú Documentation
+##  Documentation
 
 ### NTFSPLUS Documentation
 - **[Development Guide](Documentation/filesystems/ntfsplus/DEVELOPMENT.rst)** - Technical development documentation
@@ -432,7 +432,7 @@ free -h
 - **[Testing](#test)** - Test suite documentation
 - **[Build Guide](#build-and-install)** - Compilation instructions
 
-## > Contributing
+##  Contributing
 
 We welcome contributions! Please see our development guides for coding standards and contribution processes.
 
@@ -450,7 +450,7 @@ cd kernel/fs/ntfsplus && make
 ./autogen.sh && make
 ```
 
-## =Ä License
+## License
 
 This project is licensed under the GNU General Public License v2.0.
 
@@ -471,14 +471,14 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 ```
 
-## =O Acknowledgments
+## Acknowledgments
 
 NTFSPLUS is built upon the foundations of:
 - **Linux Kernel**: VFS and filesystem infrastructure
 - **ntfs-3g**: Original NTFS userspace implementation
 - **Open Source Community**: Countless contributors and testers
 
-## =Þ Support
+## Support
 
 - **GitHub Issues**: https://github.com/sprinteroz/NTFSKFC/issues
 - **Documentation**: See Documentation/ directory
@@ -488,7 +488,7 @@ NTFSPLUS is built upon the foundations of:
 
 **NTFSPLUS** - Enterprise NTFS for Linux, built for performance and reliability.
 
-**Author**: Darryl Bennett, owner of MagDriveX  
+**Co Author**: Darryl Bennett 
 **License**: GPL v2.0  
 **Repository**: https://github.com/sprinteroz/NTFSKFC
 
