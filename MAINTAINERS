@@ -1,0 +1,18 @@
+NTFSPLUS FILESYSTEM
+M:	Darryl Bennett <darryl@magdrivex.com>
+L:	linux-fsdevel@vger.kernel.org
+L:	ntfsplus-devel@lists.magdrivex.com
+S:	Maintained
+T:	git https://github.com/darrylbennett/NTFSPLUS.git
+F:	fs/ntfsplus/
+F:	include/linux/ntfsplus.h
+F:	include/uapi/linux/ntfsplus.h
+F:	Documentation/filesystems/ntfsplus.rst
+F:	Documentation/filesystems/ntfsplus/
+
+NTFSPLUS TOOLS
+M:	Darryl Bennett <darryl@magdrivex.com>
+L:	ntfsplus-devel@lists.magdrivex.com
+S:	Maintained
+T:	git https://github.com/darrylbennett/NTFSPLUS.git
+F:	src/ntfsplus*

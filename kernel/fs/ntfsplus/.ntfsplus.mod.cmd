@@ -1,0 +1,1 @@
+savedcmd_ntfsplus.mod := printf '%s\n'   ntfsplus_main.o kernel_volume.o kernel_logging.o kernel_utils.o kernel_attrib.o kernel_runlist.o kernel_mft.o kernel_inode.o kernel_compression.o kernel_transaction.o kernel_cache.o | awk '!x[$$0]++ { print("./"$$0) }' > ntfsplus.mod

@@ -1,0 +1,244 @@
+.TH NTFSPLUS-BUILD 8 "January 6, 2026" "NTFSPLUS v1.0.19" "System Administration"
+.\" Author: Darryl Bennett, owner of MagDriveX
+.\" Created: January 6, 2026
+.SH NAME
+ntfsplus-build \- Building and installing the NTFSPLUS kernel filesystem
+.SH SYNOPSIS
+.B cd kernel/fs/ntfsplus && make
+.SH DESCRIPTION
+.B ntfsplus-build
+provides comprehensive instructions for building, installing, and deploying the NTFSPLUS advanced NTFS filesystem kernel module.
+.SH PREREQUISITES
+.SS System Requirements
+.RS
+.IP \(bu 2
+.B Linux Kernel: 4.0+ with VFS support
+.IP \(bu 2
+.B Architecture: x86_64 or ARM64 recommended
+.IP \(bu 2
+.B Memory: 2GB+ RAM for compilation
+.IP \(bu 2
+.B Storage: 500MB+ free space
+.RE
+.SS Build Tools
+.RS
+.IP \(bu 2
+.B gcc: GNU C Compiler (7.0+)
+.IP \(bu 2
+.B make: GNU Make (4.0+)
+.IP \(bu 2
+.B Kernel Headers: Matching running kernel
+.IP \(bu 2
+.B bison/flex: Parser generators
+.IP \(bu 2
+.B pkg-config: Build configuration tool
+.RE
+.SH BUILD PROCESS
+.SS Step 1: Prepare Kernel Headers
+.RS
+.nf
+# Install kernel development packages
+sudo apt-get update
+sudo apt-get install linux-headers-$(uname -r)
+sudo apt-get install build-essential
+
+# Verify kernel headers
+ls -la /usr/src/linux-headers-$(uname -r)
+.fi
+.RE
+.SS Step 2: Navigate to Module Directory
+.RS
+.nf
+cd /home/darryl/VScode/project3/NTFSKFC-master/kernel/fs/ntfsplus/
+.fi
+.RE
+.SS Step 3: Build the Module
+.RS
+.nf
+# Clean previous builds
+make clean
+
+# Build the kernel module
+make
+
+# Verify build success
+ls -la ntfsplus.ko
+.fi
+.RE
+.SS Step 4: Install the Module (Optional)
+.RS
+.nf
+# Install to system modules directory
+sudo make modules_install
+
+# Update module dependencies
+sudo depmod -a
+
+# Verify installation
+find /lib/modules/$(uname -r) -name "*ntfsplus*"
+.fi
+.RE
+.SH LOADING THE MODULE
+.SS Manual Loading
+.RS
+.nf
+# Load the module
+sudo insmod ntfsplus.ko
+
+# Check if loaded successfully
+lsmod | grep ntfsplus
+
+# View kernel messages
+dmesg | tail -20
+.fi
+.RE
+.SS Automatic Loading
+.RS
+.nf
+# Create module configuration
+echo "ntfsplus" | sudo tee /etc/modules-load.d/ntfsplus.conf
+
+# Or use modprobe
+sudo modprobe ntfsplus
+.fi
+.RE
+.SH TESTING THE MODULE
+.SS Basic Functionality Test
+.RS
+.nf
+# Check module information
+modinfo ntfsplus.ko
+
+# Test mount capability
+sudo mount -t ntfsplus /dev/sdXn /mnt/test 2>&1 || echo "Mount test completed"
+.fi
+.RE
+.SS Performance Benchmarking
+.RS
+.nf
+# Create test file
+dd if=/dev/zero of=/tmp/test.dat bs=1M count=100
+
+# Benchmark write performance
+time cp /tmp/test.dat /mnt/ntfsplus/
+
+# Benchmark read performance
+time cp /mnt/ntfsplus/test.dat /tmp/
+.fi
+.RE
+.SH TROUBLESHOOTING BUILD ISSUES
+.SS Common Build Errors
+.TP
+.B Kernel headers mismatch
+Ensure kernel headers match running kernel version
+.TP
+.B Missing dependencies
+Install all required build tools and libraries
+.TP
+.B Compiler errors
+Check kernel configuration and compatibility
+.SS Debug Build
+.RS
+.nf
+# Enable verbose output
+make V=1
+
+# Check kernel logs
+dmesg | grep -i ntfsplus
+.fi
+.RE
+.SH MODULE PARAMETERS
+.SS Runtime Configuration
+.RS
+.nf
+# Load with debug enabled
+sudo insmod ntfsplus.ko debug=1
+
+# Load with custom cache size (MB)
+sudo insmod ntfsplus.ko cache_size=512
+
+# Load with security disabled
+sudo insmod ntfsplus.ko security=0
+.fi
+.RE
+.SS Available Parameters
+.TP
+.B debug
+Enable debug logging (0=off, 1=on)
+.TP
+.B cache_size
+Cache size in MB (default: 256)
+.TP
+.B security
+Enable security features (0=off, 1=on)
+.TP
+.B transactions
+Enable transactional NTFS (0=off, 1=on)
+.SH UNINSTALLATION
+.SS Remove Module
+.RS
+.nf
+# Unload module
+sudo rmmod ntfsplus
+
+# Remove from system (if installed)
+sudo rm /lib/modules/$(uname -r)/kernel/fs/ntfsplus/ntfsplus.ko
+sudo depmod -a
+.fi
+.RE
+.SH DEVELOPMENT SETUP
+.SS Repository Structure
+.RS
+.nf
+NTFSKFC-master/
+├── kernel/fs/ntfsplus/     # Kernel module source
+│   ├── ntfsplus_main.c    # Main module file
+│   ├── kernel_*.c         # Enterprise features
+│   └── Makefile           # Build configuration
+├── README.man             # Main documentation
+├── ntfsplus-build.man     # Build instructions
+└── ntfsplus-features.man  # Feature documentation
+.fi
+.RE
+.SS Contributing
+.RS
+.IP 1. 3
+Fork the repository
+.IP 2. 3
+Create feature branch
+.IP 3. 3
+Test builds on multiple kernel versions
+.IP 4. 3
+Submit pull request
+.RE
+.SH SUPPORTED KERNEL VERSIONS
+.RS
+.IP \(bu 2
+Linux 4.0+ (recommended)
+.IP \(bu 2
+Linux 5.0+ (optimal performance)
+.IP \(bu 2
+Linux 6.0+ (latest features)
+.RE
+.SH COMPATIBILITY NOTES
+.SS Filesystem Compatibility
+.RS
+.IP \(bu 2
+NTFS versions: 1.2, 3.0, 3.1
+.IP \(bu 2
+Cluster sizes: 512B to 64KB
+.IP \(bu 2
+Volume sizes: Up to 256TB
+.IP \(bu 2
+Unicode support: UTF-8/16
+.RE
+.SH SEE ALSO
+.BR ntfsplus (8),
+.BR ntfsplus-features (8),
+.BR modprobe (8),
+.BR insmod (8),
+.BR mount (8)
+.SH AUTHORS
+NTFSPLUS build system maintained by NTFS Manager Team.
+.SH BUGS
+Report build issues to the NTFSPLUS development team.

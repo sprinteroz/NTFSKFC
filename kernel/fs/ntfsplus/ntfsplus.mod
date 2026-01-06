@@ -1,0 +1,11 @@
+./ntfsplus_main.o
+./kernel_volume.o
+./kernel_logging.o
+./kernel_utils.o
+./kernel_attrib.o
+./kernel_runlist.o
+./kernel_mft.o
+./kernel_inode.o
+./kernel_compression.o
+./kernel_transaction.o
+./kernel_cache.o
